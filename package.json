@@ -1,0 +1,21 @@
+{
+  "name": "endlessrunner",
+  "version": "1.0.0",
+  "description": "Endless Runner for Shopee GE Starter Guide",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack --watch & live-server --port=8085",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yudha Satria P.",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "phaser": "^3.23.0",
+    "ts-loader": "^7.0.1",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
