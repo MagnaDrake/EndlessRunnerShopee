@@ -9,10 +9,12 @@ export default class Obstacle extends Phaser.Physics.Arcade.Image {
     scene.physics.add.existing(this);
     this.setImmovable(true);
     this.setVelocityX(-200);
-    console.log("i'm your brother");
+    console.log("i'm born");
   }
 
   update() {
-    //if (this.x < -60) this.setActive(false);
+    if (this.x < -100) this.setActive(false);
+    //console.log(this.x);
+    if (!this.body.touching.none) console.log("am hit");
   }
 }

@@ -18,13 +18,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.setGravity(0, 400);
 
+    //this.setImmovable(true);
+
     this.on("pointerdown", function () {
-      this.setVelocity(0, -600);
+      this.setVelocity(0, -300);
       console.log("click!");
     });
   }
 
   update() {
-    if (this.x < 64) this.x = xThreshold;
+    this.x = xThreshold;
   }
 }

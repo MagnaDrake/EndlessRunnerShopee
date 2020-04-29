@@ -34,17 +34,19 @@ export default class GameScene extends Phaser.Scene {
     this.obstacleManager = new ObstacleManager(this.physics.world, this, {
       classType: Obstacle,
       defaultKey: "obstacle",
-      maxSize: 20,
+      maxSize: 10,
       runChildUpdate: true,
     });
 
     this.time.addEvent({
-      delay: 3000,
+      delay: 4500,
       loop: true,
       callback: () => {
         this.obstacleManager.addObstacle(this.obstacleManager);
       },
     });
+
+    this.physics.add.overlap(this.player, this.obstacleManager);
   }
 
   update(): void {

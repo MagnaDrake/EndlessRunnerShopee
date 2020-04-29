@@ -12,7 +12,8 @@ export default class ObstacleManager extends Phaser.Physics.Arcade.Group {
 
   addObstacle(om: ObstacleManager): boolean {
     console.log("im genario, delay 3000");
-    let height = Math.random() < 0.5 ? 100 : 200;
+    let windowHeight = om.scene.cameras.main.height;
+    let height = Math.random() < 0.5 ? windowHeight - 256 : windowHeight - 400;
     let obstacle = om.get(om.scene.cameras.main.width, height);
 
     if (!obstacle) return false;
