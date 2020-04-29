@@ -9,7 +9,12 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.path = "src/Assets/";
     this.load.image("item", "Items/platformPack_item003.png");
     this.load.image("platform", "Tiles/platformPack_tile001.png");
-    this.load.image("obstacle", "/Tiles/platformPack_tile012.png");
+    this.load.image("obstacle", "Tiles/platformPack_tile012.png");
+    this.load.image("castle", "Background/castleWall.png");
+    this.load.image("cloud", "Background/cloud6.png");
+
+    this.load.image("bg1", "Background/backgroundCastles.png");
+
     this.load.spritesheet("player", "/Tilesheet/platformerPack_character.png", {
       frameWidth: 96,
       frameHeight: 96,
