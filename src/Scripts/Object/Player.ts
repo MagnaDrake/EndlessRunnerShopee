@@ -23,7 +23,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.setGravity(0, 400);
     //this.setOrigin(1);
-    this.setSize(50, 90);
+    this.setSize(50, 64);
+    this.body.offset.y = 30;
 
     this.anims.play("playerRun");
 
@@ -41,12 +42,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         self.setVelocity(0, -300);
         console.log("click!");
       }
+      self.setSize(50, 64);
+      self.body.offset.y = 30;
     });
 
     crouchButton.on("down", function () {
       if (!isCrouching) {
         //self.setOrigin(0, 1);
+        self.setVelocity(0, -100);
         self.setSize(50, 50);
+        self.body.offset.y = 50;
+
+        //self.y += 50;
       }
     });
 
