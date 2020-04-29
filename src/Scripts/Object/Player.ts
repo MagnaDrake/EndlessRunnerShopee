@@ -38,20 +38,32 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     );
 
     jumpButton.on("down", function () {
-      if (!isJumping) {
+      if (!isJumping && !isCrouching) {
         self.setVelocity(0, -300);
-        console.log("click!");
+        self.anims.play("playerJump");
+        //self.anims.stop();
       }
-      self.setSize(50, 64);
-      self.body.offset.y = 30;
     });
 
     crouchButton.on("down", function () {
-      if (!isCrouching) {
+      if (!isCrouching && !isJumping) {
+        //console.log("crouch");
+        isCrouching = true;
+        //console.log(isCrouching);
         //self.setOrigin(0, 1);
         self.setVelocity(0, -100);
-        self.setSize(50, 50);
+        //console.log("crouch size");
+        self.body.setSize(50, 50);
         self.body.offset.y = 50;
+        self.anims.play("playerCrouch");
+        self.on(
+          Phaser.Animations.Events.SPRITE_ANIMATION_KEY_COMPLETE +
+            "playerCrouch",
+          () => {
+            self.stand();
+            isCrouching = false;
+          }
+        );
 
         //self.y += 50;
       }
@@ -60,7 +72,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.on("pointerdown", function () {
       if (isJumping === false) {
         this.setVelocity(0, -300);
-        console.log("click!");
+        //console.log("click!");
       }
     });
   }
@@ -71,6 +83,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       isJumping = true;
     } else {
       isJumping = false;
+    }
+  }
+
+  stand(): void {
+    //console.log("check stand");
+    //console.log(isCrouching);
+    if (!self.anims.isPlaying && !isCrouching) {
+      console.log("stand size");
+      self.setSize(50, 64);
+      self.body.offset.y = 30;
+      self.anims.play("playerRun");
+      console.log("stand once please");
     }
   }
 }

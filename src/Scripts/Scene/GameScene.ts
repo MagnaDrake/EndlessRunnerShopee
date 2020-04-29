@@ -29,7 +29,7 @@ export default class GameScene extends Phaser.Scene {
       this.cameras.main.height - 200,
       64
     );
-    this.physics.add.collider(this.player, PlatformGroup);
+    this.physics.add.collider(this.player, PlatformGroup, this.player.stand);
 
     this.obstacleManager = new ObstacleManager(this.physics.world, this, {
       classType: Obstacle,

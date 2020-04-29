@@ -29,6 +29,26 @@ export default class PreloadScene extends Phaser.Scene {
       repeat: -1,
     });
 
+    this.anims.create({
+      key: "playerJump",
+      frames: this.anims.generateFrameNumbers("player", {
+        start: 1,
+        end: 1,
+      }),
+      frameRate: 4,
+      repeat: 1,
+    });
+
+    this.anims.create({
+      key: "playerCrouch",
+      frames: this.anims.generateFrameNumbers("player", {
+        start: 6,
+        end: 6,
+      }),
+      frameRate: 4,
+      repeat: 5,
+    });
+
     this.scene.start("GameScene");
   }
 }
