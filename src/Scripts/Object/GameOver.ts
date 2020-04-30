@@ -4,7 +4,6 @@ let self;
 export default class GameOver extends Phaser.GameObjects.Text {
   private static instance: GameOver;
   constructor(scene: Phaser.Scene) {
-    console.log("wat");
     super(scene, 10, 10, "", { color: "red", fontSize: "28px" });
     scene.add.existing(this);
     this.setOrigin(0.5);

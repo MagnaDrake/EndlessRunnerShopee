@@ -6,6 +6,8 @@ import ObstacleManager from "../Object/ObstacleManager";
 import Background from "../Object/Background";
 import BackgroundManager from "../Object/BackgroundManager";
 import ScoreManager from "../Object/ScoreManager";
+import Coin from "../Object/Coin";
+import CoinManager from "../Object/CoinManager";
 import GameOver from "../Object/GameOver";
 
 export default class GameScene extends Phaser.Scene {
@@ -15,6 +17,7 @@ export default class GameScene extends Phaser.Scene {
   private background2: BackgroundManager;
   private scoreManager: ScoreManager;
   public gameOverText: GameOver;
+  private coinManager: CoinManager;
   constructor() {
     super({ key: "GameScene" });
   }
@@ -56,6 +59,25 @@ export default class GameScene extends Phaser.Scene {
       loop: true,
       callback: () => {
         this.background2.addBackground(this.background2);
+      },
+    });
+
+    this.coinManager = new CoinManager(this.physics.world, this, {
+      classType: Coin,
+      defaultKey: "item",
+      maxSize: 10,
+      runChildUpdate: true,
+    });
+
+    this.physics.add.overlap(this.coinManager, this.player, () => {
+      this.scoreManager.addScore(100);
+    });
+
+    this.time.addEvent({
+      delay: 5000,
+      loop: true,
+      callback: () => {
+        this.coinManager.addCoin(this.coinManager);
       },
     });
 

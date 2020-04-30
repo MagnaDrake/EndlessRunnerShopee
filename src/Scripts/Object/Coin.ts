@@ -1,7 +1,7 @@
 import "phaser";
-import GameOver from "./GameOver";
+let coinAudio;
 
-export default class Obstacle extends Phaser.Physics.Arcade.Image {
+export default class Coin extends Phaser.Physics.Arcade.Image {
   constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
 
@@ -11,15 +11,16 @@ export default class Obstacle extends Phaser.Physics.Arcade.Image {
     this.setImmovable(true);
     this.setVelocityX(-200);
     this.setSize(25, 50);
+
+    coinAudio = this.scene.game.sound.add("coinGet");
   }
 
   update() {
     if (this.x < -100) this.setActive(false);
-    //console.log(this.x);
-    /*if (!this.body.touching.none) {
-      this.scene.time.timeScale = 0;
-      //this.scene.physics.world.timeScale = 0;
-      this.scene.physics.pause();
-    }*/
+    if (!this.body.touching.none) {
+      coinAudio.play();
+      this.body.checkCollision.none = true;
+      this.setActive(false).setVisible(false);
+    }
   }
 }

@@ -17,9 +17,7 @@ export default class ScoreManager extends Phaser.GameObjects.Text {
   }
 
   update() {
-    //this.setText(`fps: ${Math.floor(this.scene.game.loop.actualFps)}`)
     this.setText(this.score.toString());
-    //console.log(this.score);
   }
 
   addScore(score: number): void {

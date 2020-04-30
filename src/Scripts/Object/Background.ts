@@ -13,7 +13,6 @@ export default class Platform extends Phaser.Physics.Arcade.Image {
   }
 
   update() {
-    //console.log("im born");
     if (this.x <= -1023) this.x = this.scene.cameras.main.width + 1023;
   }
 }
