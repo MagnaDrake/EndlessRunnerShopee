@@ -17,10 +17,10 @@ export default class Obstacle extends Phaser.Physics.Arcade.Image {
   update() {
     if (this.x < -100) this.setActive(false);
     //console.log(this.x);
-    if (!this.body.touching.none) {
+    /*if (!this.body.touching.none) {
       this.scene.time.timeScale = 0;
       //this.scene.physics.world.timeScale = 0;
       this.scene.physics.pause();
-    }
+    }*/
   }
 }

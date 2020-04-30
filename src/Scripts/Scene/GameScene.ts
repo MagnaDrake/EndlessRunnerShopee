@@ -61,6 +61,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.physics.add.overlap(this.player, this.obstacleManager, () => {
       this.showGameOver(this.gameOverText);
+      this.player.gameover();
     });
 
     let PlatformGroup = this.add.group({

@@ -5,6 +5,8 @@ let crouchButton;
 let self;
 let isJumping;
 let isCrouching;
+let jumpAudio;
+let dieAudio;
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, "player");
@@ -28,6 +30,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.anims.play("playerRun");
 
+    jumpAudio = this.scene.game.sound.add("jump");
+    dieAudio = this.scene.game.sound.add("death");
+
     //this.setImmovable(true);
     jumpButton = this.scene.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.UP
@@ -42,6 +47,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         self.setVelocity(0, -300);
         self.anims.play("playerJump");
         //self.anims.stop();
+        jumpAudio.play();
       }
     });
 
@@ -94,7 +100,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       self.setSize(50, 64);
       self.body.offset.y = 30;
       self.anims.play("playerRun");
-      console.log("stand once please");
+      //console.log("stand once please");
     }
+  }
+
+  gameover(): void {
+    dieAudio.play();
+    self.scene.time.timeScale = 0;
+    //this.scene.physics.world.timeScale = 0;
+    self.scene.physics.pause();
   }
 }

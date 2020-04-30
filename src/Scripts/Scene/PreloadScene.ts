@@ -21,6 +21,10 @@ export default class PreloadScene extends Phaser.Scene {
       startFrame: 0,
       endFrame: 7,
     });
+
+    this.load.audio("jump", "Audio/phaserUp1.ogg");
+    this.load.audio("coinGet", "Audio/powerUp1.ogg");
+    this.load.audio("death", "Audio/lowDown.ogg");
   }
 
   create(): void {
