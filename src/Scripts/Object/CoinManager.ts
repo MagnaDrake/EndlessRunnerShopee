@@ -1,6 +1,6 @@
 import "phaser";
 import Coin from "../Object/Coin";
-const spawnChance = 1000;
+const spawnChance = 50;
 export default class CoinManager extends Phaser.Physics.Arcade.Group {
   //private err: ObstacleManager;
   constructor(world, scene, config) {
