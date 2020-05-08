@@ -9,7 +9,7 @@ export default class Platform extends Phaser.Physics.Arcade.Image {
     scene.physics.add.existing(this);
     this.setImmovable(true);
     this.setDepth(-5);
-    this.setVelocityX(-100);
+    this.setVelocityX(-60);
   }
 
   update() {

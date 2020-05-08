@@ -105,10 +105,11 @@ export default class GameScene extends Phaser.Scene {
 
     this.BackgroundGroup.createMultiple({
       classType: Background,
-      key: "bg1",
+      key: "pyramid",
       frameQuantity: 4,
     });
 
+    Phaser.Actions.SetScale(this.BackgroundGroup.getChildren(), 5, 10);
     Phaser.Actions.SetXY(
       this.BackgroundGroup.getChildren(),
       0,
@@ -118,7 +119,9 @@ export default class GameScene extends Phaser.Scene {
     Phaser.Actions.SetDepth(this.BackgroundGroup.getChildren(), -6);
     //haser.Actions.SetVisible(this.BackgroundGroup.getChildren(), false);
 
-    this.physics.add.collider(this.player, PlatformGroup, this.player.stand);
+    this.physics.add.collider(this.player, PlatformGroup, () => {
+      this.player.stand();
+    });
 
     this.scoreManager = new ScoreManager(this);
 

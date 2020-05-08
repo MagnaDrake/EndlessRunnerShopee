@@ -12,6 +12,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("obstacle", "Tiles/platformPack_tile012.png");
     this.load.image("castle", "Background/castleWall.png");
     this.load.image("cloud", "Background/cloud6.png");
+    this.load.image("pyramid", "Background/pyramidMayan.png");
 
     this.load.image("bg1", "Background/backgroundCastles.png");
 

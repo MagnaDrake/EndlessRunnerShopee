@@ -10,10 +10,11 @@ export default class Obstacle extends Phaser.Physics.Arcade.Image {
     scene.physics.add.existing(this);
     this.setImmovable(true);
     this.setVelocityX(-200);
-    this.setSize(25, 50);
+    this.setSize(25, 60);
   }
 
   update() {
+    this.angle += 10;
     if (this.x < -100) this.setActive(false);
     //console.log(this.x);
     /*if (!this.body.touching.none) {
