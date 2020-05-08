@@ -15,6 +15,7 @@ export default class GameScene extends Phaser.Scene {
   private obstacleManager: ObstacleManager;
   private BackgroundGroup;
   private background2: BackgroundManager;
+  private backround3;
   private scoreManager: ScoreManager;
   public gameOverText: GameOver;
   private coinManager: CoinManager;
@@ -109,6 +110,13 @@ export default class GameScene extends Phaser.Scene {
       frameQuantity: 4,
     });
 
+    this.backround3 = this.add.group({ runChildUpdate: true });
+    this.backround3.createMultiple({
+      classType: Background,
+      key: "cloud",
+      frameQuantity: 4,
+    });
+
     Phaser.Actions.SetScale(this.BackgroundGroup.getChildren(), 5, 10);
     Phaser.Actions.SetXY(
       this.BackgroundGroup.getChildren(),
@@ -117,7 +125,17 @@ export default class GameScene extends Phaser.Scene {
       1024
     );
     Phaser.Actions.SetDepth(this.BackgroundGroup.getChildren(), -6);
-    //haser.Actions.SetVisible(this.BackgroundGroup.getChildren(), false);
+    //Phaser.Actions.SetVisible(this.BackgroundGroup.getChildren(), false);
+
+    Phaser.Actions.SetScale(this.backround3.getChildren(), 5, 5);
+    Phaser.Actions.SetXY(this.backround3.getChildren(), 0, 300);
+    this.backround3.getChildren().forEach((element) => {
+      console.log(element);
+
+      element.setVelocityX(-20);
+    });
+
+    Phaser.Actions.SetDepth(this.backround3.getChildren(), -7);
 
     this.physics.add.collider(this.player, PlatformGroup, () => {
       this.player.stand();
